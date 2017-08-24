@@ -1,0 +1,26 @@
+<div class="expenses-container">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+          <th>Expense</th>
+          <th>Planned</th>
+          <th>Actual</th>
+          <th>Difference</th>
+          <th class="expenses-action-col"></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expenses">
+            <td>{{ expense.name }}</td>
+            <td>{{ expense.planned | currency:'GBP':true }}</td>
+            <td>{{ expense.actual | currency:'GBP':true }}</td>
+            <td>{{ getPlannedActualDifference(expense) | currency:'GBP':true }}</td>
+            <td>
+              <button class="btn btn-info" title="Edit Expense"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button class="btn btn-danger" title="Delete Expense"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+  <button class="btn btn-primary" title="Add Expense" (click)="onAddExpense()"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+</div>

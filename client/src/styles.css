@@ -4,3 +4,7 @@
     margin-right: 50px;
     margin-top: 20px;
 }
+
+.table-header {
+  font-weight: bold;
+}
