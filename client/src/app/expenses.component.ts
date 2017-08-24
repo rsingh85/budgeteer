@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Expense } from './expense';
 
 @Component({
   selector: 'app-expenses',
@@ -7,29 +8,13 @@ import { Component } from '@angular/core';
 })
 export class ExpensesComponent {
 
-    public expenses: any[] = [
-        {
-            name: 'Grocery',
-            planned: 80,
-            actual: 0
-        },
-        {
-            name: 'Petrol',
-            planned: 15,
-            actual: 0
-        },
-        {
-            name: 'Mortgage',
-            planned: 400,
-            actual: 0
-        }
+    public expenses: Expense[] = [
+        new Expense('Grocery', 80, 0),
+        new Expense('Petrol', 15, 0),
+        new Expense('Mortgage', 400, 0)
     ];
 
-    getPlannedActualDifference(expense: any): number {
-      return expense.planned - expense.actual;
-    }
-
     onAddExpense(): void {
-
+      // todo
     }
 }

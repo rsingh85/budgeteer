@@ -13,7 +13,7 @@
             <td>{{ expense.name }}</td>
             <td>{{ expense.planned | currency:'GBP':true }}</td>
             <td>{{ expense.actual | currency:'GBP':true }}</td>
-            <td>{{ getPlannedActualDifference(expense) | currency:'GBP':true }}</td>
+            <td>{{ expense.getPlannedActualDifference() | currency:'GBP':true }}</td>
             <td>
               <button class="btn btn-info" title="Edit Expense"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
               <button class="btn btn-danger" title="Delete Expense"><i class="fa fa-trash" aria-hidden="true"></i></button>
