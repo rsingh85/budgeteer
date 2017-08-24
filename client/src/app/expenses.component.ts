@@ -17,4 +17,8 @@ export class ExpensesComponent {
     onAddExpense(): void {
       // todo
     }
+
+    onEditExpense(expense: Expense): void {
+        expense.editing = !expense.editing;
+    }
 }

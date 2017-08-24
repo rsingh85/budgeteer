@@ -10,12 +10,21 @@
         </thead>
         <tbody>
           <tr *ngFor="let expense of expenses">
-            <td>{{ expense.name }}</td>
-            <td>{{ expense.planned | currency:'GBP':true }}</td>
-            <td>{{ expense.actual | currency:'GBP':true }}</td>
+            <td>
+              <span *ngIf="!expense.editing">{{ expense.name }}</span>
+              <input *ngIf="expense.editing" type="text" [(ngModel)]="expense.name" />
+            </td>
+            <td>
+                <span *ngIf="!expense.editing">{{ expense.planned | currency:'GBP':true }}</span>
+                <input *ngIf="expense.editing" type="number" [(ngModel)]="expense.planned" />
+            </td>
+            <td>
+                <span *ngIf="!expense.editing">{{ expense.actual | currency:'GBP':true }}</span>
+                <input *ngIf="expense.editing" type="number" [(ngModel)]="expense.actual" />
+            </td>
             <td>{{ expense.getPlannedActualDifference() | currency:'GBP':true }}</td>
             <td>
-              <button class="btn btn-info" title="Edit Expense"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button class="btn btn-info" title="Edit Expense" (click)="onEditExpense(expense)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
               <button class="btn btn-danger" title="Delete Expense"><i class="fa fa-trash" aria-hidden="true"></i></button>
             </td>
           </tr>
