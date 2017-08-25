@@ -25,7 +25,12 @@
                 <span *ngIf="!expense.editing && !expense.adding">{{ expense.actual | currency:'GBP':true }}</span>
                 <input *ngIf="expense.editing || expense.adding" type="number" [(ngModel)]="expense.actual" />
             </td>
-            <td>{{ expense.getPlannedActualDifference() | currency:'GBP':true }}</td>
+            <td>
+              <span [ngClass]="{'text-danger' : expense.isActualOverPlanned()}">
+                {{ expense.getPlannedActualDifference() | currency:'GBP':true }}
+                <i *ngIf="expense.isActualOverPlanned()" class="fa fa-exclamation-circle" aria-hidden="true" title="You over spent on this expense."></i>
+              </span>
+            </td>
             <td>
               <button *ngIf="!expense.editing && !expense.adding" class="btn btn-info" title="Edit" (click)="onEdit(expense)">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

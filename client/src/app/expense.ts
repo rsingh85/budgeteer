@@ -9,7 +9,11 @@ export class Expense {
     public actual: number
   ) {}
 
-  getPlannedActualDifference(expense: any): number {
+  getPlannedActualDifference(): number {
     return this.planned - this.actual;
+  }
+
+  isActualOverPlanned(): boolean {
+    return (this.planned - this.actual) < 0;
   }
 }
