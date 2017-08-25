@@ -14,28 +14,35 @@
         <tbody>
           <tr *ngFor="let expense of expenses">
             <td>
-              <span *ngIf="!expense.editing">{{ expense.name }}</span>
-              <input *ngIf="expense.editing" type="text" [(ngModel)]="expense.name" />
+              <span *ngIf="!expense.editing && !expense.adding">{{ expense.name }}</span>
+              <input *ngIf="expense.editing || expense.adding" type="text" [(ngModel)]="expense.name" />
             </td>
             <td>
-                <span *ngIf="!expense.editing">{{ expense.planned | currency:'GBP':true }}</span>
-                <input *ngIf="expense.editing" type="number" [(ngModel)]="expense.planned" />
+                <span *ngIf="!expense.editing && !expense.adding">{{ expense.planned | currency:'GBP':true }}</span>
+                <input *ngIf="expense.editing || expense.adding" type="number" [(ngModel)]="expense.planned" />
             </td>
             <td>
-                <span *ngIf="!expense.editing">{{ expense.actual | currency:'GBP':true }}</span>
-                <input *ngIf="expense.editing" type="number" [(ngModel)]="expense.actual" />
+                <span *ngIf="!expense.editing && !expense.adding">{{ expense.actual | currency:'GBP':true }}</span>
+                <input *ngIf="expense.editing || expense.adding" type="number" [(ngModel)]="expense.actual" />
             </td>
             <td>{{ expense.getPlannedActualDifference() | currency:'GBP':true }}</td>
             <td>
-              <button *ngIf="!expense.editing" class="btn btn-info" title="Edit" (click)="onEdit(expense)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button *ngIf="!expense.editing" class="btn btn-danger" title="Delete" (click)="onDelete(expense)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-
-              <button *ngIf="expense.editing" class="btn btn-success" title="Save" (click)="onSave(expense)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
-              <button *ngIf="expense.editing" class="btn btn-danger" title="Cancel" (click)="onCancel(expense)"><i class="fa fa-times" aria-hidden="true"></i></button>
+              <button *ngIf="!expense.editing && !expense.adding" class="btn btn-info" title="Edit" (click)="onEdit(expense)">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+              <button *ngIf="!expense.editing && !expense.adding" class="btn btn-danger" title="Delete" (click)="onDelete(expense)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+              <button *ngIf="expense.editing || expense.adding" class="btn btn-success" title="Save" (click)="onSave(expense)">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+              </button>
+              <button *ngIf="expense.editing || expense.adding" class="btn btn-danger" title="Cancel" (click)="onCancel(expense)">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
             </td>
           </tr>
         </tbody>
     </table>
   </div>
-  <button class="btn btn-primary" title="Add Expense" (click)="onAdd()"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+  <button class="btn btn-primary" title="Add Expense" (click)="onAdd()" [disabled]="isAddingExpenseAlready()"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
 </div>

@@ -1,6 +1,7 @@
 export class Expense {
 
   public editing: boolean = false;
+  public adding: boolean = false;
 
   constructor(
     public name: string,
