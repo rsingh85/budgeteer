@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Budgeteer';
+  totalBudget = 0;
+
+  onTotalBudgetChanged(newTotalBudget: number): void {
+    this.totalBudget = newTotalBudget;
+  }
 }

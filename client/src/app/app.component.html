@@ -4,16 +4,16 @@
 
 <div>
   <p class="text-info">
-    Welcome to {{title}}. 
+    Welcome to {{title}}.
   </p>
 
   <p class="text-info">
-    Use {{title}} to help plan and manage your weekly or monthly budgets. 
-    First, enter your total budget and then add your expenses. 
+    Use {{title}} to help plan and manage your weekly or monthly budgets.
+    First, enter your total budget and then add your expenses.
     Save your budget so that you can later input your actual spend to see if you stayed within your budget.
   </p>
 
-  <app-total-budget></app-total-budget>
-  <app-expenses></app-expenses>
-  
+  <app-total-budget (totalBudgetChanged)="onTotalBudgetChanged($event)"></app-total-budget>
+  <app-expenses [totalBudget]="totalBudget"></app-expenses>
+
 </div>

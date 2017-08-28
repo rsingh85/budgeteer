@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-total-budget',
@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./total-budget.component.css']
 })
 export class TotalBudgetComponent {
-    public totalBudget = 0;
+  @Output() totalBudgetChanged = new EventEmitter<number>();
 
-    onTotalBudgetUpdate(): void {
-        console.log('Updating total budget to:', this.totalBudget);
-    }
+  public totalBudget = 0;
+
+  onTotalBudgetUpdate(): void {
+      this.totalBudgetChanged.emit(this.totalBudget);
+  }
 }

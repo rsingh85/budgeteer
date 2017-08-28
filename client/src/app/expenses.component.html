@@ -51,3 +51,10 @@
   </div>
   <button class="btn btn-primary" title="Add Expense" (click)="onAdd()" [disabled]="isAddingExpenseAlready()"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
 </div>
+
+<!-- todo: pull out the stats container into its own component, will need to expose expenses data from this component -->
+<div class="budget-stats-container">
+  <p class="text-info">
+    Budget Surplus: {{ getBudgetSurplus() | currency:'GBP':true }}
+  </p>
+</div>
