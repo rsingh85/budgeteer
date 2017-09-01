@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TotalBudgetComponent } from './total-budget.component';
 import { ExpensesComponent } from './expenses.component';
+import { ErrorComponent } from './error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TotalBudgetComponent,
-    ExpensesComponent
+    ExpensesComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

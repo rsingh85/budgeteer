@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Expense } from './expense';
 
 @Component({
@@ -7,8 +7,8 @@ import { Expense } from './expense';
   styleUrls: ['./expenses.component.css']
 })
 export class ExpensesComponent {
-
   @Input() totalBudget: number;
+  @Output() errorHappened = new EventEmitter<string>();
 
   // some dummy expenses for development
   public expenses: Expense[] = [
@@ -45,13 +45,19 @@ export class ExpensesComponent {
 
   onSave(expenseToSave: Expense): void {
 
-    // todo: validate name doesn't already exist on another existing expense
-    // todo: validate planned and actual values
+    const expenseNameAlreadyInUse =
+      this.expenses.some(expense =>
+          expense !== expenseToSave &&
+          expense.name.toLowerCase() === expenseToSave.name.toLowerCase()
+      );
+
+    if (expenseNameAlreadyInUse) {
+      this.errorHappened.emit(`The expense name ${expenseToSave.name} is already in use, please change it.`);
+      return;
+    }
 
     if (expenseToSave.editing) {
       expenseToSave.editing = false;
-
-      // delete the stored original as now saving
       delete this.editingOriginalExpenses[expenseToSave.name];
     } else if (expenseToSave.adding) {
       expenseToSave.adding = false;
@@ -67,7 +73,6 @@ export class ExpensesComponent {
       expense.planned = originalExpense.planned;
       expense.actual = originalExpense.actual;
 
-      // delete the stored original as we've reverted the expense from it
       delete this.editingOriginalExpenses[expense.name];
     } else if (expense.adding) {
       this.expenses.splice(this.expenses.length - 1, 1);

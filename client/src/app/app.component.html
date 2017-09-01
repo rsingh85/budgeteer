@@ -14,6 +14,8 @@
   </p>
 
   <app-total-budget (totalBudgetChanged)="onTotalBudgetChanged($event)"></app-total-budget>
-  <app-expenses [totalBudget]="totalBudget"></app-expenses>
 
+  <app-error #error></app-error>
+
+  <app-expenses [totalBudget]="totalBudget" (errorHappened)="onErrorHappened($event)"></app-expenses>
 </div>

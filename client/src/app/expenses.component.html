@@ -14,8 +14,8 @@
         <tbody>
           <tr *ngFor="let expense of expenses">
             <td>
-              <span *ngIf="!expense.editing && !expense.adding">{{ expense.name }}</span>
-              <input *ngIf="expense.editing || expense.adding" type="text" [(ngModel)]="expense.name" />
+              <span *ngIf="!expense.adding">{{ expense.name }}</span>
+              <input *ngIf="expense.adding" type="text" [(ngModel)]="expense.name" />
             </td>
             <td>
                 <span *ngIf="!expense.editing && !expense.adding">{{ expense.planned | currency:'GBP':true }}</span>
